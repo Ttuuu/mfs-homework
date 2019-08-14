@@ -6,43 +6,43 @@
     </head>
     <body>
         <form action="/Info" method="POST" enctype="multipart/form-data">
-        e-mail: <input type="email" name="usremail" required/><br />
-        username: <input type="text" name="usrname" autofocus/><br />
-        password: <input type="password" name="usrpwd" /><br />
-        number: <input type="text" pattern="([^0-9]{0})((^1(0){2}$)|^[0-9]{0,1}[02468]$)" title="需为偶数" name="num" value="0"/><br />
-        quantity: <input type="number" min="0" max="199" name="qty" value="0" /><br />
-        telephone: <input type="tel" name="usrtel" /><br />
-        color: <input type="color" /><br />
-        radio: <input type="radio" name="rdo" value="0">a
+        <label>e-mail</label>e-mail: <input type="email" name="usremail" required/><br />
+        <label>username: </label><input type="text" name="usrname" autofocus/><br />
+        <label>password: </label><input type="password" name="usrpwd" /><br />
+        <label>number: </label><input type="text" pattern="([^0-9]{0})((^1(0){2}$)|^[0-9]{0,1}[02468]$)" title="需为偶数" name="num" value="0"/><br />
+        <label>quantity: </label><input type="number" min="0" max="199" name="qty" value="0" /><br />
+        <label>telephone: </label><input type="tel" name="usrtel" /><br />
+        <label>color: </label><input type="color" /><br />
+        <label>radio: </label><input type="radio" name="rdo" value="0">a
                     <input type="radio" name="rdo" value="0">b
                     <input type="radio" name="rdo" value="0" >c
                     <input type="radio" name="rdo" value="0" >d
                     <input type="radio" name="rdo" value="0">e<br />
-        checkbox: <input type="checkbox" />A
+        <label>checkbox: </label><input type="checkbox" />A
                             <input type="checkbox" />B
                             <input type="checkbox" />C
                             <input type="checkbox" />D
                             <input type="checkbox" />E<br />
-        date: <input type="date" /><br />
-        datetime: <input type="datetime" /><br />
-        datetime-local: <input type="datetime-local" /><br />
-        month: <input type="month" /><br />
-        week: <input type="week" /><br />
-        time: <input type="time" /><br />
-        range: <input type="range" /><br />
+        <label>date: </label><input type="date" /><br />
+        <label>datetime:</label> <input type="datetime" /><br />
+        <label>datetime-local:</label> <input type="datetime-local" /><br />
+        <label>month:</label> <input type="month" /><br />
+        <label>week:</label> <input type="week" /><br />
+        <label>time:</label> <input type="time" /><br />
+        <label>range:</label> <input type="range" /><br />
 
-        file: <input type="file" /><br />
+        <label>file:</label> <input type="file" /><br />
         <input type="hidden" name="hid" value="111"/><br />
-        image: <input type="image" src="https://raw.githubusercontent.com/Ttuuu/image/master/4.png"/><br />
-        City: <input type="text" list="cities" /><br />
+        <label>image:</label> <input type="image" src="https://raw.githubusercontent.com/Ttuuu/image/master/4.png"/><br />
+        <label>City: <input type="text" list="cities" /><br />
                     <datalist id="cities">
                         <option label="北京" value="Beijing" >
                         <option label="上海" value="Shanghai" >
                         <option label="广州" value="Guangzhou" >
                         <option label="深圳" value="Shenzhen" >
                     </datalist><br />
-        Search: <input type="search" /><br />
-        Url: <input type="url" /><br />
+        <label>Search:</label> <input type="search" /><br />
+        <label>Url:</label> <input type="url" /><br />
 
 
 

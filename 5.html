@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form1</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="/Info" method="POST" enctype="multipart/form-data">
+        e-mail: <input type="email" name="usremail" required/><br />
+        username: <input type="text" name="usrname" autofocus/><br />
+        password: <input type="password" name="usrpwd" /><br />
+        number: <input type="text" pattern="([^0-9]{0})((^1(0){2}$)|^[0-9]{0,1}[02468]$)" title="需为偶数" name="num" value="0"/><br />
+        quantity: <input type="number" min="0" max="199" name="qty" value="0" /><br />
+        telephone: <input type="tel" name="usrtel" /><br />
+        color: <input type="color" /><br />
+        radio: <input type="radio" name="rdo" value="0">a
+                    <input type="radio" name="rdo" value="0">b
+                    <input type="radio" name="rdo" value="0" >c
+                    <input type="radio" name="rdo" value="0" >d
+                    <input type="radio" name="rdo" value="0">e<br />
+        checkbox: <input type="checkbox" />A
+                            <input type="checkbox" />B
+                            <input type="checkbox" />C
+                            <input type="checkbox" />D
+                            <input type="checkbox" />E<br />
+        date: <input type="date" /><br />
+        datetime: <input type="datetime" /><br />
+        datetime-local: <input type="datetime-local" /><br />
+        month: <input type="month" /><br />
+        week: <input type="week" /><br />
+        time: <input type="time" /><br />
+        range: <input type="range" /><br />
+
+        file: <input type="file" /><br />
+        hidden: <input type="hidden" name="hid" value="111"/><br />
+        image: <input type="image" src="../image/1.jpeg"/><br />
+        City: <input type="text" list="cities" /><br />
+                    <datalist id="cities">
+                        <option label="北京" value="Beijing" >
+                        <option label="上海" value="Shanghai" >
+                        <option label="广州" value="Guangzhou" >
+                        <option label="深圳" value="Shenzhen" >
+                    </datalist><br />
+        Search: <input type="search" /><br />
+        Url: <input type="url" /><br />
+
+
+
+        <input type="button" name=btn1 value="button" />
+        <input type="submit" />
+        <input type="reset" />
+        
+        </form>
+    </body>
+</html>

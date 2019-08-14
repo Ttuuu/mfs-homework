@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form action="/getInfo" mathod="post">
+            <div class="username">
+              <label for="">姓名:</label>
+              <input type="text" name="username" placeholder="用户名">
+            </div>
+            <div class="password">
+              <lable>密码:</lable>
+              <input type="password" name="password">
+            </div>
+            <div class="sex">
+              <label for="">性别选择:</label>
+              <input type="radio" name="sex" value="0">男
+              <input type="radio" name="sex" value="1">女
+            </div> 
+            <div class="skill">
+              <label for="">技能:</label>
+              <input type="checkbox" name="skill" value="html">HTML
+              <input type="checkbox" name="skill" value="css">CSS
+              <input type="checkbox" name="skill" value="js">JavaScript     
+            </div>
+
+            <div class="select">
+                <label>所在城市:</label>
+              <select name="city">
+                <option value="bj" >北京</option>
+                <option value="sh" >上海</option>
+                <option value="sz" >深圳</option>
+              </select>
+            </div>
+            <div class="submit">
+              <button>提交</button>
+            </div>
+            <div class="reset">
+                <input type="reset" />
+            </div>
+          </form>
+    </body>
+</html>
+

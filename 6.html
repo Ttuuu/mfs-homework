@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0
+    }
+    *{
+      box-sizing: border-box
+    }
+    .left {
+      float: left;
+      width: 200px;
+    }
+    .left a{
+      display: block
+    }
+    .right {
+      float: left;
+      width: calc(100% - 202px);
+      height: 100vh
+    }
+  </style>
+</head>
+
+<body>
+  <div class="left">
+    <ul>
+        <li><a href="./2.html" target="iframe1">page1</a></li>
+        <li><a href="./3.html" target="iframe1">page2</a></li>
+        <li><a href="./4.html" target="iframe1">page3</a></li>                
+        <li><a href="./5.html"target="iframe1"> page4</a></li>
+    </ul>
+  </div>
+  <iframe name="iframe1" src="./2.html" class="right"></iframe>
+</body>
+
+</html>

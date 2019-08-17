@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+            .pnt{
+                background-color: black;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                margin:5px;
+            }
+            .square{
+                display: flex;
+                width:100px;
+                height: 100px;
+                background-color: white;
+                border-radius: 10px;
+                margin: 20px;
+                flex-wrap: wrap;
+            }
+            body{
+                display: flex;
+                background-color: black;
+            }
+            #id1{
+                align-content: center;
+                align-items: center;
+                justify-content: center;
+            }
+            #id2{
+                justify-content: space-between;
+            }
+            #id2 :nth-child(2){
+                align-self: flex-end;
+            }
+            #id3{
+                justify-content: space-between;
+            }
+            #id3 :nth-child(2){
+                align-self: center;
+            }
+            #id3 :nth-child(3){
+                align-self: flex-end;
+            }
+            #id4,#id5{
+                justify-content: space-between;
+            }
+            #id4 .col,#id5 .col{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            #id5 .col:nth-of-type(2){
+                justify-content: center;
+            }
+            #id6{
+                flex-direction: column;
+                align-content: space-between;
+                justify-content: space-between;
+            }
+        </style>
+
+
+    </head>
+    <body>
+
+        <div class="square" id="id1">
+            <div class="pnt"></div>
+        </div>
+        <div class="square" id="id2">
+                <div class="pnt"></div>
+                <div class="pnt"></div>
+            </div>
+        <div class="square" id="id3">
+            <div class="pnt"></div>
+            <div class="pnt"></div>
+            <div class="pnt"></div>
+        </div>
+        <div class="square" id="id4">
+            <div class="col">
+                <div class="pnt"></div>
+                <div class="pnt"></div></div>
+                <div class="col">
+                <div class="pnt"></div>
+                <div class="pnt"></div></div>
+            </div>
+        <div class="square" id="id5">
+            <div class="col">
+                <div class="pnt"></div>
+                <div class="pnt"></div></div>
+            <div class="col">
+                    <div class="pnt"></div>
+                </div>
+            <div class="col">
+                <div class="pnt"></div>
+                <div class="pnt"></div></div>
+        </div>
+        <div class="square" id="id6">
+            <div class="pnt"></div>
+            <div class="pnt"></div>
+            <div class="pnt"></div>
+            <div class="pnt"></div>
+            <div class="pnt"></div>
+            <div class="pnt"></div>
+        </div>
+
+               
+
+
+    </body>
+
+
+</html>

@@ -236,6 +236,7 @@ a.link:hover{
     margin-top: 0;
     margin-right: 7px;
     margin-bottom: 7px;
+    border-radius: 0;
 }
 .copyright{
     padding:28px 0;

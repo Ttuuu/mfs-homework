@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        nav{
+            width: 100%;
+            border-radius: 5px;
+            border: #999 1px solid;
+            background-color: #eee;
+            display: flex;
+            text-align: left;
+            word-break: break-all;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .link{
+            font-size: 18px;
+            padding:15px 15px;
+            text-decoration: none;
+            color: #777;
+        }
+        .link:hover{
+            color: #555;
+        }
+        
+        
+        
+        
+        @media only screen and (max-width: 768px){
+            a.link{
+                width:100%;
+            }
+            nav{
+                flex-wrap: wrap;
+            }
+        }
+        
+        </style>
+        <link rel="stylesheet" href="./iconfont.css">
+    </head>
+        <nav>
+            <a href="" class="link">菜鸟教程</a>
+            <a href="" class="link" style="background-color: #ddd">iOS</a>
+            <a href="" class="link">SVN</a>
+            <a href="" class="link">Java<span class="iconfont icon-sanjiaoxia"></span></a>
+        </nav>
+
+
+
+
+
+</html>

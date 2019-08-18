@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>navigator</title>
+        <meta charset="utf-8">
+        <style>
+            body{
+                display: flex;
+                align-self: center;
+                align-content: center;
+                justify-content: center;
+            }
+            div#id5.title{
+                border:2px solid black;
+                padding:15px 50px;
+                height: 100px;
+                position:absolute;
+                top:400px;
+               background-color: transparent;
+                text-align: center;
+            }
+            .tit-s,.tit-l{
+                margin:5px 0;
+            }
+            .cycle{
+                background: yellow;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                position:relative;
+                left:-83px;
+                top:-60px;
+                z-index: ;
+            }
+            div.triagl{
+                margin:0;
+            width: 0px;
+            height: 0px;
+                background-color: transparent;
+            border-right:yellow 30px solid;
+            border-left: transparent 30px solid;
+            border-top: transparent 30px solid;
+            border-bottom: transparent 30px solid;
+            transform: rotate(-30deg);
+            position: relative;
+            left:125px;
+            top:-180px;
+        }    
+        </style>
+        <link rel="stylesheet" href="19.css">
+    </head>
+    <body>
+        <div class="container">
+            <nav class=nav>
+                <div class="link fl"><strong>码蜂社</strong></div>
+                <div class="link fl" id=id1>
+                    <ul>
+                        <li>首页</li>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>2</li>
+                        <li>2</li>
+                        <li>2</li>
+                        <li>2</li>
+                    </ul>
+                    </div>
+                <div class="link fl" id=id2>
+                    <ul>
+                            <li>前端</li>
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                        </ul>
+
+                </div>
+                <div class="link fl" id=id3>
+                    <ul>
+                            <li>社区</li>
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                        </ul>
+                </div>
+                <div class="link fl" id=id4>
+                    <ul>
+                            <li>关于我们</li>
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                        </ul>   
+                </div>
+                <div class="link fr">登录</div>
+                <div class="link fr">注册</div>
+            </nav>
+        </div>
+        <div class="title" id="id5">
+            <h3 class="tit-s">SHARED COURSE</h3>
+            <h1 class="tit-l">课程分享</h1>
+            <div class="cycle"></div>
+            <div class="triagl"></div>
+        </div>
+
+
+
+    </body>
+
+</html>

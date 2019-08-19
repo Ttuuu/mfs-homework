@@ -11,6 +11,7 @@
       margin: 0;
       padding:0;
       background: black;
+      height: 100%
     }
       .nav{
     max-width: 1040px;
@@ -29,12 +30,12 @@ div.container{
 ul{
   margin:0 10px;
   padding:0 10px;
-  transition:max-height 0.5s;
+  transition:max-height 0.5s, background 0.5s;
   max-height:38px;
   overflow: hidden;
   line-height: 38px;
   list-style-type: none;
-  background: #ffe502;
+  background: rbga(255,245,2,0);
 }
 .container2{
   flex-grow: 1;
@@ -46,6 +47,7 @@ ul:hover{
   max-height:300px;
   animation: changecolor 1s;
   cursor: pointer;
+  background: #ffe502;
 }
 h6{
   font-size: 15px;

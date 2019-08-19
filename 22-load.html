@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @keyframes rotating{
+                0%{transform: rotate(0deg);}
+                25%{transform: rotate(180deg);}
+                50%{transform: rotate(360deg);}
+                75%{transform: rotate(540deg);}
+                100%{transform: rotate(720deg);}
+
+            }
+            @keyframes moving-green-d{
+                0%{transform: translate(0,0);}
+                50%{transform: translate(0,50px);}
+                100%{transform: translate(0,0);}
+            }
+            @keyframes moving-yellow{
+                0%{transform: translate(0,0);}
+                50%{transform: translate(50px,0);}
+                100%{transform: translate(0,0);}
+            }
+            @keyframes moving-red{
+                0%{transform: translate(0,0);}
+                50%{transform: translate(0,50px);}
+                100%{transform: translate(0,0);}
+            }
+            @keyframes moving-green-l{
+                0%{transform: translate(0,0);}
+                50%{transform: translate(50px,0);}
+                100%{transform: translate(0,0);}
+            }
+
+
+            @keyframes moving-green-d-m{
+                0%{transform: translate(0,-20px);}
+                50%{transform: translate(0,50px);}
+                100%{transform: translate(0,-20px);}
+            }
+            @keyframes moving-yellow-m{
+                0%{transform: translate(-20px,0);}
+                50%{transform: translate(50px,0);}
+                100%{transform: translate(-20px,0);}
+            }
+            @keyframes moving-red-m{
+                0%{transform: translate(0,-20px);}
+                50%{transform: translate(0,50px);}
+                100%{transform: translate(0,-20px);}
+            }
+            @keyframes moving-green-l-m{
+                0%{transform: translate(-20px,0);}
+                50%{transform: translate(50px,0);}
+                100%{transform: translate(-20px,0);}
+            }
+
+
+
+            @keyframes moving-green-d-l{
+                0%{transform: translate(0,-40px);}
+                50%{transform: translate(0,50px);}
+                100%{transform: translate(0,-40px);}
+            }
+            @keyframes moving-yellow-l{
+                0%{transform: translate(-40px,0);}
+                50%{transform: translate(50px,0);}
+                100%{transform: translate(-40px,0);}
+            }
+            @keyframes moving-red-l{
+                0%{transform: translate(0,-40px);}
+                50%{transform: translate(0,50px);}
+                100%{transform: translate(0,-40px);}
+            }
+            @keyframes moving-green-l-l{
+                0%{transform: translate(-40px,0);}
+                50%{transform: translate(50px,0);}
+                100%{transform: translate(-40px,0);}
+            }
+            
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height:800px;
+            }
+            .container{
+                width: 100px;
+                height: 100px;
+                display: flex;
+                align-content: center;
+                align-items: center;
+                justify-content: center;
+                animation: rotating 10s infinite linear;
+                position: fixed;
+            }
+            .line{
+                position:absolute;
+                display: flex;
+            }
+            .line:nth-of-type(1){
+                height: 100px;
+                transform: translate(5px,-40px) rotate(180deg);
+                flex-direction: column;
+                align-items: center;
+
+            }
+            .line:nth-of-type(2){
+                width: 100px;
+                transform: translate(40px,5px);
+                align-items: center;
+            }
+            .line:nth-of-type(3){
+                height: 100px;
+                transform: translate(-5px,40px);
+                flex-direction: column;
+                align-items: center;
+            }
+            .line:nth-of-type(4){
+                width: 100px;
+                transform: translate(-40px,-5px) rotate(180deg);
+
+                align-items: center;
+            }
+            .container .pnt-s{
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+            }
+            .container .pnt-m{
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+            }
+            .container .pnt-l{
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+            }
+            .pnt-s,.pnt-l,.pnt-m{
+                position:fixed;
+            }
+            .green-d{
+                background: #1f4e5a;
+            }
+            .green-l{
+                background-color: #00a691;
+
+            }
+            .yellow{
+                background-color: #ffb265;
+
+            }
+            .red{
+                background-color: #ff5955;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="line">
+                    <div class="pnt-s green-d" style="animation:moving-green-d 2.5s -0.2s infinite linear;"></div>
+                    <div class="pnt-m green-d" style="animation:moving-green-d-m 2.5s -0.6s infinite linear;"></div>
+                    <div class="pnt-l green-d" style="animation:moving-green-d-l 2.5s -1s infinite linear;"></div>
+
+            </div>
+            <div class="line">
+                    <div class="pnt-s yellow" style="animation: moving-yellow 2.5s -0.2s infinite linear;"></div>
+                    <div class="pnt-m yellow" style="animation: moving-yellow-m 2.5s -0.6s infinite linear;"></div>
+                    <div class="pnt-l yellow" style="animation: moving-yellow-l 2.5s -1s infinite linear;"></div>
+
+            </div>
+            <div class="line">
+                    <div class="pnt-s red" style="animation: moving-red 2.5s -0.2s infinite linear;"></div>
+                    <div class="pnt-m red" style="animation: moving-red-m 2.5s -0.6s infinite linear;"></div>
+                    <div class="pnt-l red" style="animation: moving-red-l 2.5s -1s infinite linear;"></div>
+
+                </div>
+            <div class="line">
+                    <div class="pnt-s green-l" style="animation: moving-green-l 2.5s infinite -0.2s linear;"></div>
+                    <div class="pnt-m green-l" style="animation: moving-green-l-m 2.5s -0.6s infinite linear;"></div>
+                    <div class="pnt-l green-l" style="animation: moving-green-l-l 2.5s -1s infinite linear;"></div>
+
+                </div>
+
+
+
+
+
+
+
+        </div>
+                            
+
+
+
+    </body>
+
+
+
+</html>

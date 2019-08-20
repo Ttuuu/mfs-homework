@@ -23,6 +23,4 @@ console.log(Boolean({a:1}));
 console.log(Boolean(function(){}));
 
 var obj={a:1, b:"2", c:true };
-console.log(obj.a);
-console.log(obj.b);
-console.log(obj.c);
+

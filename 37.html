@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>37</title>
+        
+</head>
+<body>
+    <canvas id="test" width="200" height="200"></canvas>
+        <script>
+            var ele=document.getElementById("test");
+            var ctx=ele.getContext("2d");
+            ctx.save()
+            ctx.translate(100,100)
+            ctx.scale(1,-1)
+            ctx.lineCap="round"
+            function redraw(){
+                ctx.clearRect(-100,-100,200,200)
+                var obj=new Date()
+                var h=obj.getHours()
+                var m=obj.getMinutes()
+                var s=obj.getSeconds()
+
+                ctx.save()
+                ctx.strokeStyle="#0044cc";
+                ctx.lineWidth=5;
+                ctx.beginPath()
+                ctx.arc(0,0,80,0,Math.PI*2)
+                ctx.closePath()
+                ctx.stroke()
+                ctx.restore()
+
+                
+                ctx.save()
+                ctx.lineWidth=3
+                ctx.beginPath()
+                for(var i=0;i<12;i++){
+                    var t=Math.PI/6*i
+                    var x=70*Math.sin(t);
+                    var y=70*Math.cos(t)
+                    ctx.moveTo(x,y)
+                    ctx.lineTo(0.8*x,0.8*y)
+                }
+                ctx.closePath()
+                ctx.stroke()
+                ctx.restore()
+
+                ctx.save()
+                ctx.lineWidth=2
+                ctx.beginPath()
+                for(var i=0;i<60;i++){
+                    var t=Math.PI/30*i
+                    var x=70*Math.sin(t)
+                    var y=70*Math.cos(t)
+                    ctx.moveTo(x,y)
+                    ctx.lineTo(0.9*x,0.9*y)
+                }
+                ctx.closePath()
+                ctx.stroke()
+                ctx.restore()
+
+                /////////////////////////////////////////////////
+                ctx.save()
+                ctx.lineWidth=5
+                var t=Math.PI/6*h+Math.PI/30*(m/60+s/3600)-Math.PI/2
+                ctx.beginPath()
+                ctx.moveTo(-10*Math.cos(t),10*Math.sin(t))
+                ctx.lineTo(30*Math.cos(t),-30*Math.sin(t))
+                ctx.closePath()
+                ctx.stroke()
+                ctx.restore()
+
+                ctx.save()
+                ctx.lineWidth=4
+                var t=Math.PI/30*(m+s/60)-Math.PI/2
+                ctx.beginPath()
+                ctx.moveTo(-15*Math.cos(t),15*Math.sin(t))
+                ctx.lineTo(50*Math.cos(t),-50*Math.sin(t))
+                ctx.closePath()
+                ctx.stroke()
+                ctx.restore()
+
+                ctx.save()
+                ctx.lineWidth=2
+                ctx.strokeStyle="#ff0000"
+                var t=Math.PI/30*s-Math.PI/2
+                ctx.beginPath()
+                ctx.arc(55*Math.cos(t),-55*Math.sin(t),5,0,Math.PI*2)
+                ctx.moveTo(50*Math.cos(t),-50*Math.sin(t))
+                ctx.lineTo(3*Math.cos(t),-3*Math.sin(t))
+                ctx.moveTo(3,0)
+                ctx.arc(0,0,3,0,Math.PI*2)
+                ctx.moveTo(-3*Math.cos(t),3*Math.sin(t))
+                ctx.lineTo(-15*Math.cos(t),15*Math.sin(t))
+
+                ctx.closePath();
+                ctx.stroke()
+                ctx.restore()
+            }
+
+            setInterval(redraw, 1000);
+
+
+
+        </script>
+    </body>
+</html>

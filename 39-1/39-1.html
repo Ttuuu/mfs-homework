@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="39.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+</head>
+<body>
+    <div class="banner"></div>
+    <div id="list">
+        <div class="item">
+        </div>
+    </div>
+    <div class="pager">
+    </div>
+    <script>
+        function createItem(no,title,clickTimes,replyTimes){
+            var dom=document.createElement("div")
+            dom.setAttribute("class","item")
+            var html='<div class="no">'+no+'</div>'+
+            '<div class="title">'+title+'</div>'+
+            '<div class="info"><span class="iconfont icon-yanjing">'+clickTimes+'</span><span class="iconfont icon-icon_huifu-mian">'+replyTimes+'</span></div>'+
+            '<div class="face"><span class="iconfont icon-iconfront-"></span></div>'
+            dom.innerHTML=html;
+            return dom;
+        }
+        var data =[]
+        for(var i=1;i<101;i++){
+            data.push({no:i,title:"title"+i,clickTimes:32+i,replyTimes:234-i})
+        }
+        var pageList=document.getElementsByClassName("pager")
+        
+        for(let i=1;i<data.length/12+1;i++){
+            var newPage=document.createElement("a")
+            newPage.innerHTML=i;
+            pageList[0].appendChild(newPage)
+        }
+
+
+
+
+
+        function getData(page){
+            return data.slice(page*12,page*12+12);
+        }
+        var oList=document.getElementById("list");
+
+        function fillDom(page){
+            while(oList.hasChildNodes()){
+                oList.removeChild(oList.lastChild)
+            }
+            var data=getData(page);
+            var doms=data.map(function(i){
+                return createItem(i.no,i.title,i.clickTimes,i.replyTimes)
+            })
+            doms.forEach(function(i){
+                oList.appendChild(i)    
+            })
+        }
+        fillDom(0);
+        
+        var pages=document.querySelectorAll(".pager a")
+        for(let i=0;i<pages.length;i++){
+            pages[i].addEventListener("click",function(){
+            fillDom(i);
+            })
+        }
+    
+    </script>
+</body>
+</html>

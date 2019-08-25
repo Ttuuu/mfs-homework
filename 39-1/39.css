@@ -1,0 +1,82 @@
+body{
+    margin: 0;
+}
+.banner{
+    background: url(https://work.mafengshe.com/static/imgs/banner.jpg);
+    height:270px;
+    width: 100%;
+}
+#list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between
+
+}
+.item{
+    background:#4cd8e0;
+    width:22%;
+    height:148px;
+    margin: 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.item .no{
+    background: #20b6d2;
+    width:70px;
+    height:70px;
+    border-radius: 50%;
+    line-height: 70px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    position: absolute;
+    top:-15px;
+    left:-15px;
+}
+.item .title{
+    background: #00474c;
+    height: 45px;
+    position: absolute;
+    left: 0;
+    bottom:0;
+    right: 0;
+    text-align: center;
+    line-height: 45px;
+    color: white;
+    font-size: 14px;
+}
+.item .info{
+    position: absolute;
+    right:15px;
+    top:5px;
+    color:white;
+    font-size: 15px;
+}
+.info span{
+    margin: 0 5px;
+}
+#list .item .face{
+    font-size: 80px;
+    position: absolute;
+    left:0;
+    right:0;
+    top:-40px;
+    bottom: 0;
+    margin:auto;
+    height: 80px;
+    width: 80px;
+}
+.pager{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    width: 100%;
+    height: 60px;
+}
+.pager a{
+    margin:20px;
+
+
+}

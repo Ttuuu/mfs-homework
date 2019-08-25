@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div id="award">点击“开始”按钮，开始抽奖！</div>
+        <div class="action">
+           <button id="start" onclick="intervalId=setInterval(awardRun,100)">开 始</button>
+           <button id="stop" onclick="stop()">停 止</button>
+        </div>
+        <script>
+            var awd=document.getElementById("award")
+            function changeAward(str){
+                awd.innerHTML=str;
+            }
+            function stop(){
+                clearInterval(intervalId)
+            }
+            function awardRun(){
+                var randNum=Math.random();
+                if(randNum<0.01)
+                    changeAward("特等奖")
+                else if(randNum<0.11)
+                    changeAward("一等奖")
+                else if(randNum<0.41)
+                    changeAward("二等奖")
+                else if(randNum<0.81)
+                    changeAward("三等奖")
+                else
+                    changeAward("鼓励奖")
+            }
+            
+
+        
+        
+        
+        </script>
+
+
+</body>
+</html>

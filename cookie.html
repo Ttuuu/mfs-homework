@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="goods">
+        <div class="item">0<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">1<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">2<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">3<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">4<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">5<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">6<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">7<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">8<button class="add">add</button><button class="minus">minus</button></div>
+        <div class="item">9<button class="add">add</button><button class="minus">minus</button></div>
+    </div>
+    <div id="gouwuc"></div>
+    <script>
+        var addbtns=document.querySelectorAll(".goods>.item>.add")
+        var minusbtns=document.querySelectorAll(".goods>.item>.minus")
+        for(let i=0;i<addbtns.length;i++){
+            var product=document.querySelector("div.item:nth-of-type("+(i+1)+")")
+            var newEle=document.createElement("text")
+            newEle.innerHTML=localStorage.getItem('buy['+i+']')
+            product.appendChild(newEle)
+        }
+        function updateStorage(i){
+            var productNum=document.querySelector("div.item:nth-of-type("+(i+1)+")>text")
+            if(localStorage.getItem('buy['+i+']')==null) return;
+            productNum.innerHTML=localStorage.getItem('buy['+i+']')
+        }
+
+
+        for(let i=0;i<addbtns.length;i++){
+            addbtns[i].addEventListener("click",function(){
+                if(localStorage.getItem('buy['+i+']')==null)
+                    localStorage.setItem('buy['+i+']',1)
+                else 
+                    localStorage.setItem('buy['+i+']',parseInt(localStorage.getItem('buy['+i+']'))+1)
+                updateStorage(i)
+
+            })
+            minusbtns[i].addEventListener("click",function(){
+                if(parseInt(localStorage.getItem('buy['+i+']'))-1<0 || localStorage.getItem('buy['+i+']')==null){
+                    localStorage.setItem('buy['+i+']',0)
+                    alert("商品数量不能小于0")
+                }
+                else
+                    localStorage.setItem('buy['+i+']',parseInt(localStorage.getItem('buy['+i+']'))-1)
+                updateStorage(i)
+            })
+        }
+
+
+
+        
+    
+    </script>
+</body>
+</html>

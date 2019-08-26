@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>37</title>
+        
+</head>
+<body>
+    <iframe src="http://www.a.com:8000/42-2.html">
+        <script>
+            document.domain="a.com:8000"
+            setTimeout(function(){
+            console.log(window.frames[0].document.getElementById("title"))
+        },1000)
+        </script>
+    </body>
+</html>

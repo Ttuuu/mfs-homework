@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <style>
+      *{
+        font-size: 15px;
+      }
+    body{
+      margin: 0;
+      padding:0;
+      background: black;
+      height: 100%
+    }
+      .nav{
+    max-width: 1040px;
+    margin: 0 auto;
+
+    display: flex;
+}
+div.container{
+    height: 38px;
+    margin:0;
+    height: 38px;
+    position: fixed;
+    width:100%;
+    background: #ffe502;
+}
+ul{
+  margin:0 10px;
+  padding:0 10px;
+  transition:max-height 0.5s, background 0.5s;
+  max-height:38px;
+  overflow: hidden;
+  line-height: 38px;
+  list-style-type: none;
+  background: rbga(255,245,2,0);
+}
+.container2{
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  line-height: 38px;
+}
+ul:hover{
+  max-height:300px;
+  animation: changecolor 1s;
+  cursor: pointer;
+  background: #ffe502;
+}
+h6{
+  font-size: 15px;
+  margin:0;
+  padding:0 10px;
+line-height: 38px;
+}
+a{
+  margin:0 10px;
+}
+    </style>
+  </head>
+  <body>
+      <div class="container">
+        <nav class="nav">
+            <h6 id="title"><strong>码蜂社</strong></h6>
+          <ul>
+              <li>首页</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+            </ul>
+            <ul>
+                <li>前端</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+              </ul>
+  
+            <ul>
+                <li>社区</li>
+                <li>2</li>
+                <li>3</li>
+              </ul>
+              <ul>
+                  <li>关于我们</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>4</li>
+                  <li>5</li>
+                </ul>
+          <div class="container2">
+            <a>登录</a>
+            <a >注册</a>
+          </div>
+        </nav>
+        
+
+<script>
+  document.domain="a.com:8000"
+</script>
+  </body>
+</html>

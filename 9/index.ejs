@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <style>
+        .valid{
+            display: none;
+        }
+        .valid.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form action="/signup">
+        省：<input list="region"><datalist id="region"></datalist>
+        市：<input list="state"><datalist id="state"></datalist>
+        区：<input list="city"><datalist id="city"></datalist>
+        
+        <input type="submit">
+    </form>
+    <script>
+        var input=document.getElementById("username")
+        var timer
+        function usernameChange(){
+            clearTimeout(timer)
+            timer=setTimeout(function(){
+                $.ajax({
+                url:"/usernameExist",
+                method:"post",
+                data:{
+                    username:input.value
+                },
+                success:function(data){
+                    console.log(data)
+                    if(data.exist){
+                        $(".valid").addClass("show")
+                    }else{
+                        $(".valid").removeClass("show")
+                    }
+                }
+            })
+            },1000);
+            
+        }
+    </script>
+    <script>
+        var regionList=document.querySelector("[list=region]")
+        var stateList=document.querySelector("[list=state]")
+        var cityList=document.querySelector("[list=city]")
+        function addItem(listName,data){
+            listName.innerHTML=""
+            for(let i=0;i<data.length;i++){
+                var newItem=document.createElement("option")
+                newItem.setAttribute("value",data[i])
+                listName.appendChild(newItem)
+            }
+        }
+
+
+
+        regionList.onfocus=function(){
+            $.ajax({
+                url:"/getRegion",
+                method:"post",
+                data:{},
+                success:function(data){
+                    console.log(data)
+                    addItem($('#region')[0],data)
+                }
+            })
+        }
+        stateList.onfocus=function(){
+            $.ajax({
+                url:"/getState",
+                method:"post",
+                data:{regionName:regionList.value},
+                success:function(data){
+                    console.log(data)
+                    addItem($('#state')[0],data)
+                }
+            })
+        }
+        cityList.onfocus=function(){
+            $.ajax({
+                url:"/getCity",
+                method:"post",
+                data:{regionName:regionList.value, stateName:stateList.value},
+                success:function(data){
+                    console.log(data)
+                    addItem($('#city')[0],data)
+                }
+            })
+        }
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+
+
+
+
+
+
+
+
+
+    <script>
+                
+        function getItems(callback){
+            var xhr=new XMLHttpRequest()
+            xhr.open("get","https://learning-api.mafengshe.com/news",true)
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4&& xhr.status==200){
+                    callback(JSON.parse(xhr.responseText))
+                }
+            }
+            xhr.send()
+        }
+        
+
+
+
+    </script>
+</body>
+</html>

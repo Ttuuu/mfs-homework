@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <style>
+        .valid{
+            display: none;
+        }
+        .valid.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form action='/'>
+        username<input type="text" id="username" oninput="checkUsername()" pattern="^[a-z,A-Z].{5,17}$"><div class="valid">username has been used</div><br/>
+        password<input type="password" id="pwd" pattern="^.{6,18}$"><br/>
+        repeat password<input type="password" id="pwd-rpt" oninput="checkPwd()">
+        <input type="submit" />
+    </form>
+    <script>
+        var inputUname=document.getElementById("username")
+        var inputPwd2=document.getElementById('pwd-rpt')
+        var timer
+        function checkUsername(){
+            clearTimeout(timer)
+            timer=setTimeout(function(){
+                $.ajax({
+                url:"/usernameExist",
+                method:"post",
+                data:{
+                    username:inputUname.value
+                },
+                success:function(data){
+                    console.log(data)
+                    if(data.exist){
+                        $(".valid").addClass("show")
+                    }else{
+                        $(".valid").removeClass("show")
+                    }
+                }
+            })
+            },1000);  
+        }
+
+
+
+        function checkPwd(){
+            var pwd=document.getElementById('pwd').value
+            var pwd2=document.getElementById('pwd-rpt')
+            if(pwd!=pwd2.value)
+                pwd2.setCustomValidity("Password values do not match")
+            else pwd2.setCustomValidity("")
+        }
+
+
+
+    </script>
+</body>
+</html>

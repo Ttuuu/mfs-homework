@@ -4,14 +4,6 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <style>
-        .valid{
-            display: none;
-        }
-        .valid.show{
-            display: block;
-        }
-    </style>
 </head>
 <body>
     <form action="/signup">
@@ -21,31 +13,6 @@
         
         <input type="submit">
     </form>
-    <script>
-        var input=document.getElementById("username")
-        var timer
-        function usernameChange(){
-            clearTimeout(timer)
-            timer=setTimeout(function(){
-                $.ajax({
-                url:"/usernameExist",
-                method:"post",
-                data:{
-                    username:input.value
-                },
-                success:function(data){
-                    console.log(data)
-                    if(data.exist){
-                        $(".valid").addClass("show")
-                    }else{
-                        $(".valid").removeClass("show")
-                    }
-                }
-            })
-            },1000);
-            
-        }
-    </script>
     <script>
         var regionList=document.querySelector("[list=region]")
         var stateList=document.querySelector("[list=state]")
@@ -94,43 +61,7 @@
                 }
             })
         }
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </script>
 
-
-
-
-
-
-
-
-
-    <script>
-                
-        function getItems(callback){
-            var xhr=new XMLHttpRequest()
-            xhr.open("get","https://learning-api.mafengshe.com/news",true)
-            xhr.onreadystatechange=function(){
-                if(xhr.readyState==4&& xhr.status==200){
-                    callback(JSON.parse(xhr.responseText))
-                }
-            }
-            xhr.send()
-        }
-        
-
-
-
-    </script>
 </body>
 </html>

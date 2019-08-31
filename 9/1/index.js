@@ -5352,14 +5352,6 @@ data=[
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.get("/json",function(req,res,next){
-  res.json([{no:0, title:0 ,clickTimes:3 ,replyTimes:43},{no:0, title:0 ,clickTimes:3 ,replyTimes:43},{no:0, title:0 ,clickTimes:3 ,replyTimes:43},{no:0, title:0 ,clickTimes:3 ,replyTimes:43},{no:0, title:0 ,clickTimes:3 ,replyTimes:43}])
-})
-router.post("/usernameExist",function(req,res,next){
-  res.json({
-    exist:"mark"==req.body.username
-  })
-})
 router.post("/getRegion",function(req,res,next){
   var resData=[]
   for(let i=0;i<data.length;i++){

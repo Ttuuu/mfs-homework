@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.3.4/dist/vue.js"></script>
+</head>
+<body>
+    <div id='v'>{{str}}</div>
+
+    <div id='num'>{{number}}
+            <button @click='btnClick()'>+1</button>
+            </div>
+        
+    <div id="list">
+        <ul>
+            <item v-for="i in list" :data="i"></item>
+        </ul>
+    </div>
+    <script>
+        var v=new Vue({
+            el:'#v',
+            data:{str:"Hello Vue"}
+        })
+
+        var num=new Vue({
+            el:'#num',
+            data:{number:0}
+            ,methods:{
+                btnClick:function(){
+                    this.number++;
+               }
+            }
+        })
+        
+        Vue.component("item",{
+            props:['data'],
+            template:"<li>{{data}}</li>"
+        })
+        var list=new Vue({
+            el:'#list',
+            data:{
+                list:[
+                    "aaa",
+                    "bbb",
+                    "ccc"
+                ]
+            },
+            methods:{
+            },created: function(){
+                console.log('created')
+            },destroyed: function(){
+                console.log('destroyed')
+            }
+        })
+    </script>
+</body>
+</html>

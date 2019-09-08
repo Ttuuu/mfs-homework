@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://unpkg.com/vue@2.3.4/dist/vue.js"></script>
+
+</head>
+<body>
+    <form action="/signin" id='signin' @submit.prevent='cancelSubmit'>
+        username<input type="text" v-model='username'>
+        password<input type="password" v-model='password'>
+        
+        <input type="submit" @click='ajaxSubmit()'>
+    </form>
+    <script>
+        var app=new Vue({
+            el:'#signin',
+            data:{
+                username:'',
+                password:''
+            },methods:{
+                cancelSubmit:function(){
+                    return false;
+                },
+                ajaxSubmit:function(){
+                    $.ajax({
+                        type:"POST",
+                        url:"/signin",
+                        data:{"username":this.username,
+                                    "password":this.password},
+                        dataType:"json",
+                        success:function(data){
+                            console.log(data);
+                        },
+                        error:function(msg){
+                            console.log("request fail:"+msg);
+                        }
+                    });
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

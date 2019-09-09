@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.3.4/dist/vue.js"></script>
+    <style>
+        header{
+            background: lightslategray;
+            color:white;
+            width: 100%;
+            height: 48px;
+            margin:0;
+            text-align: center;
+        }
+        footer{
+            background-color: #333;
+            color:#ddd;
+            width: 100%;
+            height: 100px;
+            margin:0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <container>
+            <parent></parent>
+        </container>
+    </div>
+    <script>
+        Vue.component('container',{
+            template:`<div class='main'>
+                                        <header>header</header>
+                                        <slot></slot>
+                                        <footer>footer</footer>
+                                </div>
+                                `
+        })
+        Vue.component('parent',{
+            data:function(){
+                return {a:0}
+            },
+            methods:{
+                childIncrement(){
+                    this.a++
+                }
+            },
+            template:`
+                                <div class='parent'>
+                                <p>{{a}}</p>
+                                    <child :message='a' @increment='childIncrement'></child>
+                                    <child :message='a' @increment='childIncrement'></child>
+                                </div>
+            `
+        })
+        Vue.component('child',{
+            props:{
+                message:{}
+            },
+            data:function(){
+                return {a:0}
+            },
+            methods:{
+                btnClick(e){
+                    this.a++
+                    this.$emit('increment')
+                }
+            },
+            template:`<button class='child' @click='btnClick()'>{{a}}</button>`
+        })
+        var app=new Vue({
+            el:'#app',
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>

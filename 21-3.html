@@ -77,7 +77,7 @@
             },
             methods:{
                 addNewTodo:function(){
-                    if(this.newTodo.match(/^\s+$/)) return;
+                    if(this.newTodo.match(/^\s+$/)||this.newTodo=='') return;
                     var todo={name:this.newTodo,state:false,activeItem:false}
                     this.todos.push(todo)
                     this.newTodo=''

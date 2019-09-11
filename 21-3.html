@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TODO List</title>
+    <style>
+        ul{
+            padding:0;
+            margin:0;
+            list-style: none;
+
+        }
+        .completed{
+            text-decoration: line-through;
+            color:#d9d9d9;
+        }
+
+    </style>
+    <script src="https://unpkg.com/vue@2.3.4/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model='allDone'>
+        <input type="text" v-model='newTodo' @keyup.enter='addNewTodo()'>
+        <ul>
+            <li v-for='(i,idx) in filteredTodos' :class='i.state==1? "completed":""'>
+                <input type='checkbox' v-model='i.state'>{{i.name}}
+                <button @click='delTodo'>del</button>
+            </li>
+        </ul>
+        <span>{{leftTodosNum}} items left</span>
+        <button @click='visibility="all"'>All</button>
+        <button @click='visibility="active"'>Active</button>
+        <button @click='visibility="completed"'>Completed</button>
+
+        <button @click='clearTodos()' v-if='completedTodosNum!=0'>clearTodos</button>
+    </div>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                todos:[
+                {name:'asd',state:true,activeItem:false},
+                {name:'asfdas',state:false,activeItem:false}
+
+                ],
+                newTodo:'',
+                visibility:'all',
+                allDone:false
+            },
+            computed:{
+                filteredTodos:function(){
+                    if(this.visibility=='all')
+                        return this.todos
+                    else if(this.visibility=='active'){
+                        return this.todos.filter(i=>i.state==false)
+                    }
+                    else if (this.visibility=='completed'){
+                        return this.todos.filter(i=>i.state==true)
+                    }
+                },
+                leftTodosNum:function(){
+                    return this.todos.filter(i=>!i.state).length
+                },
+                completedTodosNum:function(){
+                    return this.todos.filter(i=>i.state).length
+                }
+            },
+            watch:{
+                allDone:function(val){
+                    this.todos.map(i=>{
+                        i.state=val
+                        return i})
+                }
+            },
+            methods:{
+                addNewTodo:function(){
+                    if(this.newTodo.match(/^\s+$/)) return;
+                    var todo={name:this.newTodo,state:false,activeItem:false}
+                    this.todos.push(todo)
+                    this.newTodo=''
+                },
+                delTodo:function(idx){
+                    this.todos.splice(idx,1)
+                },
+                clearTodos:function(){
+                    this.todos=this.todos.filter(i=>!i.state)
+                },
+                getEdit:function(idx){
+                    this.todos[idx].activeItem=true
+                    console.log('dbclick')                    
+                },
+                looseFocus:function(idx){
+                    this.todos[idx].activeItem=false                    
+                }
+            }
+
+        })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script src="https://cdn.bootcss.com/rxjs/6.0.0-alpha.3/Rx.min.js"></script>
+    <style>
+    #app{
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    #canvas{
+      position: relative;
+      height: 600px;
+      width:600px;
+      margin:30px;
+    }
+    #line, #axis{
+      position: absolute;
+      top:0;
+      left:0;
+    }
+    #choose{
+      margin:30px;
+      color:lightslategray;
+
+    }
+    div{
+      text-align: center;
+      font-size: 20px;
+    }
+    input{
+      width: 100px;
+      height: 50px;
+      margin:10px;
+      font-size: 20px;
+      text-align:center;
+      border-radius:5px;
+      border:none;
+    }
+    button{
+      font-size: 18px;
+      width: 150px;
+      height: 50px;
+      margin:20px;
+      color:lightslategray;
+      background-color: lightblue;
+      border: 0;
+      border-radius:5px;
+    }
+  </style>
+  
+</head>
+<body>
+  <div id='app'>
+    <div id='canvas'>
+      <canvas id='axis' width='600' height="600"></canvas>
+      <canvas id='line' width='600' height="600"></canvas>
+    </div>
+
+    <div id='choose'>
+      <div :curr='curr'>Current Coordinate:({{curr[0]}},{{curr[1]}})</div>
+      Circle Center: x=<input type="number" v-model='centerX'>y=<input type="number" v-model='centerY'>Radius: <input type="number" v-model='radius'>
+      <br/>
+      Ellipse Center: x=<input type="number" v-model='centerXE'>y=<input type="number" v-model='centerYE'></br>
+      a: <input type="number" v-model='ellipseA'>b: <input type="number" v-model='ellipseB'>
+      <br/>
+      <button @click='drawCircle()'>Circle</button>
+      <button @click='drawEllipse()'>Ellipse</button>
+      <button @click='reset()'>clean canvas</button>
+    </div>
+  </div>
+  <script>
+    let app=new Vue({
+      el:'#app',
+      data:{
+        centerX:0,
+        centerY:0,
+        radius:0,
+        centerXE:0,
+        centerYE:0,
+        ellipseA:0,
+        ellipseB:0,
+        circleFinished:false,
+        ellipseFinished:false,
+        points:[],
+        curr:[0,0]
+      },
+      methods:{
+        drawCircle:function(){
+                this.cleanCanvas()
+                var x0=0;
+                var y0=parseInt(this.radius);
+                var d=3-2*parseInt(this.radius);
+                this.points.push([x0,y0]);                
+                while (x0<y0) {
+                        if (d<0) {
+                                d+=4*x0+6;
+                        }else {
+                                d+=4*(x0-y0)+10;
+                                y0--;
+                        }
+                        x0++;
+                        this.points.push([x0,y0]);                
+                }
+                let l=this.points.length
+                for(let i=1;i<l;i++){
+                        if(this.points[l-i-1][1]!=this.points[l-i][0] && this.points[l-i-1][0]!=this.points[l-i][1])
+                                this.points.push([this.points[l-i-1][1],this.points[l-i-1][0]])
+                }
+                l=this.points.length
+                for(let i=1;i<l;i++){
+                        this.points.push([this.points[l-i-1][0],-this.points[l-i-1][1]])
+                }
+                l=this.points.length
+                for(let i=1;i<l-1;i++){
+                        this.points.push([-this.points[l-i-1][0],this.points[l-i-1][1]])
+                }
+               
+            this.circleFinished=true
+          },
+          drawEllipse:function(){
+                this.cleanCanvas()
+                var x,y;
+                var d1,d2;
+                var a=parseFloat(this.ellipseA)
+                var b=parseFloat(this.ellipseB)
+                x=0;
+                y=b;
+                d1=b*b+a*a*(-b+0.25);
+                while(b*b*(x+1)<a*a*(y-0.5)){
+                        this.points.push([x,y]);                
+                        if(d1<0){
+                                d1+=b*b*(2*x+3);
+                                x++;
+                        }
+                        else{
+                                d1+=b*b*(2*x+3)+a*a*(-2*y+2);
+                                x++;
+                                y--;
+                        }
+                }
+                d2=Math.pow(b*(x+0.5),2)+Math.pow(a*(y-1),2)-Math.pow(a*b,2);
+                while(y>=0){
+                        this.points.push([x,y]);                
+                        if(d2<0){
+                                d2+=b*b*(2*x+2)+a*a*(-2*y+3);
+                                x++;
+                                y--;
+                        }
+                        else{
+                                d2+=a*a*(-2*y+3);
+                                y--;
+                        }
+                }
+                let l=this.points.length
+                for(let i=1;i<l;i++){
+                        this.points.push([this.points[l-i-1][0],-this.points[l-i-1][1]])
+                }
+                l=this.points.length
+                for(let i=1;i<l-1;i++){
+                        this.points.push([-this.points[l-i-1][0],this.points[l-i-1][1]])
+                }
+            this.ellipseFinished=true
+          },
+          cleanCanvas:function(){
+            lineCanvas.clearRect(-300,-300,600,600)
+            this.points=[]
+            this.circleFinished=false
+            this.ellipseFinished=false
+          },
+          reset:function(){
+            this.cleanCanvas()
+            this.startX=0
+            this.startY=0
+            this.endX=0
+            this.endY=0
+          },
+          drawPoint:function(x1,y1,centerx,centery){
+            x=(x1+centerx)*20-10
+            y=(y1+centery)*20-10
+            lineCanvas.beginPath()
+            lineCanvas.moveTo(x,y)
+            lineCanvas.save()
+            lineCanvas.strokeStyle='rgba(0,255,0,0)'
+            lineCanvas.rect(x,y,20,20)
+            lineCanvas.closePath()
+            lineCanvas.stroke()
+            lineCanvas.fillStyle='rgba(39, 139, 172,0.5)'
+            lineCanvas.fill()
+            lineCanvas.restore()
+            console.log('point')
+          }
+  },
+        mounted:function(){
+          axis=document.getElementById('axis')
+          line=document.getElementById('line')
+          lineCanvas=line.getContext('2d')
+          ctx=axis.getContext('2d')
+          ctx.translate(300,300)
+          ctx.scale(1,-1)
+          lineCanvas.translate(300,300)
+          lineCanvas.scale(1,-1)
+          
+          ctx.save()
+          ctx.strokeStyle='rgb(119,136,153)'
+          ctx.lineWidth=1
+          for(let i=-300;i<=300;i+=20){
+            ctx.beginPath()
+            ctx.moveTo(i,-300)
+            ctx.lineTo(i,300)
+            ctx.closePath()
+            ctx.stroke()
+          }
+          for(let i=-300;i<=300;i+=20){
+            ctx.beginPath()
+            ctx.moveTo(-300,i)
+            ctx.lineTo(300,i)
+            ctx.closePath()
+            ctx.stroke()
+          }
+          ctx.strokeStyle='rgb(86, 98, 110)'
+          ctx.beginPath()
+          ctx.moveTo(-300,0)
+          ctx.lineTo(300,0)
+          ctx.closePath()
+          ctx.stroke()
+          ctx.moveTo(0,-300)
+          ctx.lineTo(0,300)
+          ctx.closePath()
+          ctx.stroke()
+          ctx.restore()
+        },
+        watch:{
+          circleFinished(){
+                if(this.circleFinished==false) return
+            var point=Rx.Observable.from(this.points)
+            var drawInterval=point.zip(Rx.Observable.interval(100),(x,y)=>x)
+            drawInterval.subscribe({
+              next:(item)=>{
+                this.drawPoint(item[0],item[1],parseInt(this.centerX),parseInt(this.centerY))
+                this.curr=item
+              },
+              error:(err)=>console.log('Error:'+err),
+              complete:()=>console.log('complete')
+            })
+          },
+          ellipseFinished(){
+                  if(this.ellipseFinished==false) return
+                var point=Rx.Observable.from(this.points)
+                var drawInterval=point.zip(Rx.Observable.interval(100),(x,y)=>x)
+                drawInterval.subscribe({
+                next:(item)=>{
+                        this.drawPoint(item[0],item[1],parseInt(this.centerXE),parseInt(this.centerYE))
+                        this.curr=item
+                },
+                error:(err)=>console.log('Error:'+err),
+                complete:()=>console.log('complete')
+                })
+          }
+        }
+    })
+
+
+  </script>
+        
+</body>
+</html>

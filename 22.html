@@ -30,7 +30,7 @@
         <button @click='addItem'>Add</button><button @click='removeItem'>Remove</button><br/>
         
         <transition-group name='fade'>
-            <span v-for='(item,idx) in array' :key='item'>{{item}}</span>
+            <span v-for='item in array' :key='item'>{{item}}</span>
         </transition-group>
     </div>
     <script>
